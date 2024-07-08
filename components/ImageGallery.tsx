@@ -37,8 +37,8 @@ export const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
     setVisibleIndex((visibleIndex - 1 + images.length) % images.length);
   };
 
-  useKeyPress("ArrowRight", next);
-  useKeyPress("ArrowLeft", prev);
+  useKeyPress("ArrowRight", () => isOpen && next());
+  useKeyPress("ArrowLeft", () => isOpen && prev());
 
   return (
     <>
