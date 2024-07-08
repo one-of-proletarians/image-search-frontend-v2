@@ -45,7 +45,11 @@ export const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
       {images.map((image, index) => {
         return (
           <li key={image.name} className="w-28 h-28 ">
-            <button className="w-full h-full" onClick={() => open(index)}>
+            <button
+              className="w-full h-full"
+              type="button"
+              onClick={() => open(index)}
+            >
               <img
                 alt={image.name}
                 className="rounded-lg w-full h-full object-cover block"
