@@ -86,7 +86,7 @@ export const InputImage = forwardRef<HTMLInputElement, InputFileProps>(
         </Modal>
       </>
     );
-  },
+  }
 );
 
 InputImage.displayName = "InputImage";

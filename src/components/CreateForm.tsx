@@ -9,7 +9,7 @@ import { useFormStatus } from "react-dom";
 import { Item } from "./Item";
 
 import { uid } from "@/lib/utils";
-import upload from "@/actions/upload";
+import upload from "@/server-actions/upload";
 
 const getEmptyItem = () => ({ id: uid(), isValid: false });
 
@@ -37,7 +37,7 @@ function Component() {
             onRemove={() => remove(id)}
             onValidChange={(valid) => {
               setItems((items) =>
-                items.map((i) => (i.id === id ? { ...i, isValid: valid } : i)),
+                items.map((i) => (i.id === id ? { ...i, isValid: valid } : i))
               );
             }}
           />
