@@ -46,7 +46,7 @@ export const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
         return (
           <li key={image.name} className="w-28 h-28 ">
             <button
-              className="w-full h-full"
+              className="w-full h-full rounded-lg focus-visible:outline-focus focus-visible:outline-2 focus-visible:outline-offset-2"
               type="button"
               onClick={() => open(index)}
             >
