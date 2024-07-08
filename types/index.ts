@@ -12,3 +12,8 @@ type ItemData = {
 };
 
 export type UploadData = Record<string, ItemData>;
+
+export interface LoginForm {
+  email: string;
+  password: string;
+}

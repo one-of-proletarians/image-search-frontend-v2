@@ -21,6 +21,8 @@ const upload = async (formData: FormData): Promise<string> => {
     }
   });
 
+  console.log(itemsData);
+
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve("files");
