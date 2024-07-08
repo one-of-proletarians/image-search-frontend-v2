@@ -76,7 +76,7 @@ export const Item: FC<ItemProps> = ({
           {drag && (
             <motion.div
               animate={{ opacity: 1 }}
-              className="absolute flex items-center justify-center inset-0 z-50 bg-black/50 border-dashed border-3 rounded-large"
+              className="absolute flex items-center justify-center inset-0 z-50 font-bold text-xl text-white bg-black/80 border-dashed border-3 rounded-large"
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
             >
