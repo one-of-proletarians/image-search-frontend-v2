@@ -74,7 +74,9 @@ export default function Register() {
       </form>
       <p className="mt-6 text-center">
         <span className="mr-1">Уже есть аккаунт?</span>
-        <Link href="/login">Вход</Link>
+        <Link disabled={pending} href="/login">
+          Вход
+        </Link>
       </p>
     </div>
   );

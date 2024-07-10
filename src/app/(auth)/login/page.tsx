@@ -78,7 +78,11 @@ export default function Login() {
         </Button>
         <div className="flex items-center pt-4 justify-center">
           <span>Нет аккаунта?</span>
-          <Link className="text-blue-700 hover:underline ml-2" href="/register">
+          <Link
+            className="text-blue-700 hover:underline ml-2"
+            disabled={pending}
+            href="/register"
+          >
             Зарегистрироваться
           </Link>
         </div>
@@ -112,6 +116,7 @@ export default function Login() {
 
         <Link
           className="text-center text-blue-700 hover:underline mt-10"
+          disabled={pending}
           href=""
         >
           Забыли пароль?
