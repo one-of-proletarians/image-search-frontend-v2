@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 import { type RegisterSchemaType, registerSchema } from "@/schemes/zod";
 import { Link } from "@/components/Link";
+import { PasswordInput } from "@/components/PasswordInput";
 
 export default function Register() {
   const [pending, setPending] = useState(false);
@@ -23,7 +24,7 @@ export default function Register() {
   return (
     <div>
       <form noValidate onSubmit={onSubmit}>
-        <div className="grid gap-2 min-w-80">
+        <div className="grid gap-2 w-80">
           <Input
             errorMessage={errors.username?.message}
             isDisabled={pending}
@@ -42,7 +43,7 @@ export default function Register() {
             {...register("email")}
           />
 
-          <Input
+          <PasswordInput
             errorMessage={errors.password?.message}
             isDisabled={pending}
             isInvalid={!!errors.password}
@@ -51,7 +52,7 @@ export default function Register() {
             {...register("password")}
           />
 
-          <Input
+          <PasswordInput
             errorMessage={errors.confirmPassword?.message}
             isDisabled={pending}
             isInvalid={!!errors.confirmPassword}

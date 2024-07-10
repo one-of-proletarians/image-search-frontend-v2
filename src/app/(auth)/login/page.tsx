@@ -13,6 +13,7 @@ import { AuthButton } from "@/components/FacebookButton";
 import { FacebookIcon, GoogleIcon } from "@/components/icons";
 import { loginSchema, type LoginSchemaType } from "@/schemes/zod";
 import { Link } from "@/components/Link";
+import { PasswordInput } from "@/components/PasswordInput";
 
 export default function Login() {
   const {
@@ -46,71 +47,76 @@ export default function Login() {
   });
 
   return (
-    <form className="flex flex-col gap-2 min-w-80" onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       {isError && (
         <div className="flex rounded-medium bg-danger-200 mb-2 p-2 items-center justify-center">
           E-mail или пароль введены неверно
         </div>
       )}
-      <Input
-        errorMessage={errors.email?.message}
-        isDisabled={pending}
-        isInvalid={!!errors.email}
-        label="E-mail"
-        size="sm"
-        {...register("email")}
-      />
 
-      <Input
-        errorMessage={errors.password?.message}
-        isDisabled={pending}
-        isInvalid={!!errors.password}
-        label="Пароль"
-        size="sm"
-        type="password"
-        {...register("password")}
-      />
+      <div className="grid gap-2 w-80">
+        <Input
+          errorMessage={errors.email?.message}
+          isDisabled={pending}
+          isInvalid={!!errors.email}
+          label="E-mail"
+          size="sm"
+          {...register("email")}
+        />
 
-      <Button color="primary" isDisabled={pending} size="lg" type="submit">
-        Войти
-      </Button>
-      <div className="flex items-center pt-4 justify-center">
-        <span>Нет аккаунта?</span>
-        <Link className="text-blue-700 hover:underline ml-2" href="/register">
-          Зарегистрироваться
+        <PasswordInput
+          errorMessage={errors.password?.message}
+          isDisabled={pending}
+          isInvalid={!!errors.password}
+          label="Пароль"
+          size="sm"
+          {...register("password")}
+        />
+
+        <Button color="primary" isDisabled={pending} size="lg" type="submit">
+          Войти
+        </Button>
+        <div className="flex items-center pt-4 justify-center">
+          <span>Нет аккаунта?</span>
+          <Link className="text-blue-700 hover:underline ml-2" href="/register">
+            Зарегистрироваться
+          </Link>
+        </div>
+
+        <div className="flex items-center py-4">
+          <Divider className="flex-1" />
+          <p className="mx-2">или</p>
+          <Divider className="flex-1" />
+        </div>
+
+        <div className="flex justify-center gap-2">
+          <AuthButton
+            className="flex-1"
+            isDisabled={pending}
+            provider="google"
+            startContent={<GoogleIcon className="w-5 h-5" />}
+            onClick={() => setPending(true)}
+          >
+            Google
+          </AuthButton>
+          <AuthButton
+            className="flex-1"
+            isDisabled={pending}
+            provider="facebook"
+            startContent={<FacebookIcon className="w-5 h-5" />}
+            onClick={() => setPending(true)}
+          >
+            Facebook
+          </AuthButton>
+        </div>
+
+        <Link
+          className="text-center text-blue-700 hover:underline mt-10"
+          href=""
+        >
+          Забыли пароль?
         </Link>
       </div>
-
-      <div className="flex items-center py-4">
-        <Divider className="flex-1" />
-        <p className="mx-2">или</p>
-        <Divider className="flex-1" />
-      </div>
-
-      <div className="flex justify-center gap-2">
-        <AuthButton
-          className="flex-1"
-          isDisabled={pending}
-          provider="google"
-          startContent={<GoogleIcon className="w-5 h-5" />}
-          onClick={() => setPending(true)}
-        >
-          Google
-        </AuthButton>
-        <AuthButton
-          className="flex-1"
-          isDisabled={pending}
-          provider="facebook"
-          startContent={<FacebookIcon className="w-5 h-5" />}
-          onClick={() => setPending(true)}
-        >
-          Facebook
-        </AuthButton>
-      </div>
-
-      <Link className="text-center text-blue-700 hover:underline mt-10" href="">
-        Забыли пароль?
-      </Link>
     </form>
   );
 }
