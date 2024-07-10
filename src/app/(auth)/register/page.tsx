@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -17,7 +16,7 @@ export default function Register() {
     formState: { errors },
   } = useForm<RegisterSchemaType>({ resolver: zodResolver(registerSchema) });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async () => {
     setPending(true);
   });
 
@@ -61,7 +60,13 @@ export default function Register() {
             {...register("confirmPassword")}
           />
 
-          <Button color="primary" isDisabled={pending} size="lg" type="submit">
+          <Button
+            className="mt-2"
+            color="primary"
+            isDisabled={pending}
+            size="lg"
+            type="submit"
+          >
             Регистрация
           </Button>
         </div>
