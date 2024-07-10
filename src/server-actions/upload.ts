@@ -2,12 +2,14 @@
 
 import type { UploadData } from "@/types";
 
-const upload = async (formData: FormData): Promise<string> => {
+import { fileTypeFromBlob } from "file-type";
+
+const upload = async (formData: FormData) => {
   const itemsData: UploadData = {};
-  let index = 0;
 
   formData.forEach((value, key) => {
-    if (index++ === 0) return;
+    if (key.startsWith("$")) return;
+
     const [item, field] = key.split("--");
 
     if (!itemsData[item]) {
@@ -21,13 +23,17 @@ const upload = async (formData: FormData): Promise<string> => {
     }
   });
 
-  console.log(itemsData);
+  for (const item of Object.values(itemsData)) {
+    for (const image of item.images) {
+      const { mime } = (await fileTypeFromBlob(image))!;
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("files");
-    }, 2000);
-  });
+      if (mime.includes("image")) {
+        return JSON.stringify({ name: image.name, mime });
+      }
+
+      console.log(image.name, mime);
+    }
+  }
 };
 
 export default upload;
