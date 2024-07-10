@@ -15,7 +15,7 @@ export const Link: FC<Props> = ({ disabled, className, ...rest }) => {
       className={clsx(
         "cursor-pointer text-blue-700 hover:underline",
         className,
-        disabled && "cursor-not-allowed pointer-events-none"
+        disabled && "cursor-not-allowed pointer-events-none text-blue-900"
       )}
     />
   );
